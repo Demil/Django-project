@@ -1,0 +1,54 @@
+{% extends 'navbar.html' %}
+
+{% block title_block %}
+
+
+
+
+{% endblock %}
+
+
+{% block css_block %}
+<style>
+body{
+   background-color: steelblue; 
+}
+</style>
+{% endblock %}
+
+{% block body_block %}
+{% if friends %}
+{% for friend in friends %}
+
+
+<div class="card" style="width: 50rem;">
+    {% if friend.profile_pic %}
+    <img src="/media/{{ friend.profile_pic }}" 
+    width="50px" height="50px"  alt=""  style="border-radius: 50%;">
+
+    {% else %}
+    <img src="/static/img/default.png" width="50px" height="50px"  alt="" style="border-radius: 50%;">
+    {% endif %}
+    <div class="card-body">
+      <h5 class="card-title">{{friend.user.username}}</h5>
+      <p>@{{friend.user.username|lower}}</p>
+      <h5 class="card-title">{{friend.full_name}}</h5>
+      
+      <p class="card-text"><p>{{friend.description}}</p>
+    </div>
+    <ul class="list-group list-group-flush">
+     <li class="list-group-item">Name:{{friend.full_name}}</li>
+      <li class="list-group-item">Followers:{{friend.user.follower}}</li>
+    
+    </ul>
+    <div class="card-body">
+      website:<a href="#" class="card-link">{{friend.website}}</a>
+      facebook:<a href="#" class="card-link">{{friend.facebook}}</a>
+    </div>
+  </div>
+<br><br>
+
+
+{% endfor %}
+{% endif %}
+{%endblock%}
